@@ -1,5 +1,3 @@
-To create the table of contents and the rest of the document in Markdown, you can follow these steps:
-
 ## Magic 8-Ball Google Project Matching Predictor
 ### Welcome to the Magic 8-Ball Google Project Matching Predictor!
 

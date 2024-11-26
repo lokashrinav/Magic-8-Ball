@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magic 8-Ball Recruiter Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 50px 0;
+        }
+        #magic8ball {
+            position: relative;
+            margin: 0 auto;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 30% 30%, #555, #000);
+            border-radius: 50%;
+            box-shadow: inset -15px -15px 40px rgba(0,0,0,0.5), inset 15px 15px 40px rgba(255,255,255,0.1);
+            cursor: pointer;
+            overflow: hidden;
+        }
+        #magic8ball::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle at center, #000, #222);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        #triangle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 180px;
+            height: 150px;
+            background: linear-gradient(145deg, #1a237e, #4a148c);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            box-shadow: 0px 0px 15px 8px rgba(72, 61, 139, 0.7);
+        }
+        #answer {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-family: 'Fjalla One', sans-serif;
+            color: #ffffff;
+            text-align: center;
+            width: 150px;
+            display: none;
+            z-index: 3;
+            opacity: 0;
+        }
+        .shake {
+            animation: shake 0.8s;
+        }
+        .fade-in {
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: translate(-10px, 0) rotate(-5deg); }
+            20%, 40%, 60%, 80% { transform: translate(10px, 0) rotate(5deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1 {
+            margin-bottom: 10px;
+            font-family: 'Fjalla One', sans-serif;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-family: 'Fjalla One', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Will You Get a Recruiter Project Matching Call?</h1>
+<p>Click on the Magic 8-Ball to find out!</p>
+<div id="magic8ball">
+    <div id="triangle"></div>
+    <div id="answer"></div>
+</div>
+
+<script>
+    const answers = [
+        "Absolutely, get ready!",
+        "The call is on its way.",
+        "Yes, expect good news soon.",
+        "All signs point to yes.",
+        "Definitely!",
+        "Positive outcome ahead.",
+        "You can count on it.",
+        "Without a doubt.",
+        "Reply hazy, try again.",
+        "Better not tell you now.",
+        "Cannot predict now.",
+        "Focus and ask again.",
+    ];
+
+    const magic8ball = document.getElementById('magic8ball');
+    const answerDiv = document.getElementById('answer');
+
+    magic8ball.addEventListener('click', function() {
+        magic8ball.classList.add('shake');
+        answerDiv.style.display = 'none';
+        answerDiv.classList.remove('fade-in');
+        setTimeout(function() {
+            magic8ball.classList.remove('shake');
+            const randomIndex = Math.floor(Math.random() * answers.length);
+            answerDiv.innerText = answers[randomIndex];
+            answerDiv.style.display = 'block';
+            answerDiv.classList.add('fade-in');
+        }, 800);
+    });
+</script>
+
+</body>
+</html>
